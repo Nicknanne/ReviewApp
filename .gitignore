@@ -17,9 +17,9 @@
 # and not meant to be shared across different developer environments.
 # This includes files within the 'Properties' folder that are user-specific.
 # MAUI specific: launchSettings.json usually sits here.
-Properties/launchSettings.json # <-- ДОБАВЛЕНО для MAUI/ASP.NET Core
-Properties/PublishProfiles/    # <-- ДОБАВЛЕНО: для профилей публикации, часто специфичны
-Properties/ServiceReferences/  # <-- ДОБАВЛЕНО: для подключенных сервисов
+Properties/launchSettings.json 
+Properties/PublishProfiles/ 
+Properties/ServiceReferences/ 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
