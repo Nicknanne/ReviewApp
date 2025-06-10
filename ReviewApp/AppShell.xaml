@@ -8,8 +8,11 @@
     Title="ReviewApp">
 
     <ShellContent
-        Title="Home"
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="LoginPage" />
+    <ShellContent
+        Title="MainMenu"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
-
 </Shell>
