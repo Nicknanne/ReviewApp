@@ -17,9 +17,9 @@
 # and not meant to be shared across different developer environments.
 # This includes files within the 'Properties' folder that are user-specific.
 # MAUI specific: launchSettings.json usually sits here.
-Properties/launchSettings.json 
-Properties/PublishProfiles/ 
-Properties/ServiceReferences/ 
+ReviewApp/Properties/launchSettings.json 
+ReviewApp/Properties/PublishProfiles/ 
+ReviewApp/Properties/ServiceReferences/ 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -43,9 +43,9 @@ bld/
 [Ll]og/
 [Ll]ogs/
 # MAUI specific build outputs (e.g., intermediate files for platforms)
-Platforms/**/bin/
-Platforms/**/obj/
-Platforms/**/build/
+ReviewApp/Platforms/**/bin/
+ReviewApp/Platforms/**/obj/
+ReviewApp/Platforms/**/build/
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
