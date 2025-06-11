@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ReviewApp.Services;
 
 namespace ReviewApp;
 
@@ -14,8 +15,16 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		builder.Services.AddSingleton<IReviewService, ReviewService>();
+		builder.Services.AddSingleton<IGamesService, GamesService>();
+
+		builder.Services.AddSingleton<LoginPage>();
+		builder.Services.AddSingleton<MainPage>();
+		builder.Services.AddSingleton<AddReviewPage>();
+
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
