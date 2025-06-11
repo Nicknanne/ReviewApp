@@ -1,3 +1,6 @@
+using ReviewApp.Models;
+using ReviewApp.Services;
+
 namespace ReviewApp;
 
 public partial class LoginPage : ContentPage
@@ -7,8 +10,8 @@ public partial class LoginPage : ContentPage
 		InitializeComponent();
 	}
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-		Shell.Current.GoToAsync("//MainPage");
+		await Shell.Current.GoToAsync("//MainPage");
     }
 }
