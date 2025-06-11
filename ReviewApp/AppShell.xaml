@@ -15,4 +15,8 @@
         Title="MainMenu"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
+    <ShellContent
+        Title="MainMenu"
+        ContentTemplate="{DataTemplate local:AddReviewPage}"
+        Route="AddReviewPage" />
 </Shell>

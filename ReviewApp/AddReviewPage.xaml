@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:ReviewApp.Controls"
+             x:Class="ReviewApp.AddReviewPage"
+             Title="AddReviewPage">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
+        <Label Text="Choose game" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center"></Label>
+        <SearchBar Placeholder="Find game" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="300" HeightRequest="40" TextChanged="SearchBar_TextChanged"></SearchBar>
+        <Picker VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="300" HeightRequest="40"></Picker>
+        <Editor Placeholder="Your comment" WidthRequest="300" HeightRequest="100"></Editor>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <controls:RatingSliderControl TitleText="Graphics:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>
+            <controls:RatingSliderControl TitleText="Gameplay:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>
+            <controls:RatingSliderControl TitleText="Sound:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>
+            <controls:RatingSliderControl TitleText="Replaybility:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <controls:RatingSliderControl TitleText="Plot and lore:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>
+            <controls:RatingSliderControl TitleText="Immersive:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>
+            <controls:RatingSliderControl TitleText="Impression:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <RadioButton Content="Завершена" GroupName="GameStatus" Value="Completed" IsChecked="True"></RadioButton>
+            <RadioButton Content="Заброшена" GroupName="GameStatus" Value="Abandoned" IsChecked="False"></RadioButton>
+            <RadioButton Content="Бесконечна" GroupName="GameStatus" Value="Endless" IsChecked="False"></RadioButton>
+        </HorizontalStackLayout>
+        <Button Text="Save review" Clicked="Button_Clicked" WidthRequest="200"></Button>
+    </VerticalStackLayout>
+</ContentPage>
