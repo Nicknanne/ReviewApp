@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ReviewApp.Controls.RatingSliderControl"
+             x:Name="thisControl">
+    <VerticalStackLayout HorizontalOptions="Start">
+        <HorizontalStackLayout Spacing="5">
+            <Label Text="{Binding Source={x:Reference thisControl}, Path=TitleText}"></Label>
+            <Label Text="{Binding Source={x:Reference sliderControl}, Path=Value, StringFormat='{0:F0}'}"></Label>
+        </HorizontalStackLayout>
+        <Slider 
+            x:Name="sliderControl"
+            Minimum="{Binding Source={x:Reference thisControl}, Path=MinimumValue}"
+            Maximum="{Binding Source={x:Reference thisControl}, Path=MaximumValue}"
+            Value="{Binding Source={x:Reference thisControl}, Path=CurrentValue, Mode=TwoWay}"
+            WidthRequest="100"></Slider>
+    </VerticalStackLayout>
+</ContentView>
