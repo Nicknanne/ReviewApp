@@ -9,5 +9,7 @@ namespace ReviewApp.Services
         Task<Game> AddGameAsync(Game game);
         Task<Game> UpdateGameAsync(Game game);
         Task DeleteGameAsync(int gameId);
+
+        Task<ObservableCollection<Game>> GetGamesAsync();
     }
 }

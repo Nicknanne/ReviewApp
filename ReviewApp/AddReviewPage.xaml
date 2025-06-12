@@ -7,7 +7,7 @@
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
         <Label Text="Choose game" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center"></Label>
         <SearchBar Placeholder="Find game" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="300" HeightRequest="40" TextChanged="SearchBar_TextChanged"></SearchBar>
-        <Picker VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="300" HeightRequest="40"></Picker>
+        <Picker x:Name="GamesPicker" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="300" HeightRequest="40"></Picker>
         <Editor Placeholder="Your comment" WidthRequest="300" HeightRequest="100"></Editor>
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
             <controls:RatingSliderControl TitleText="Graphics:" MinimumValue="1" MaximumValue="10" CurrentValue="5"></controls:RatingSliderControl>

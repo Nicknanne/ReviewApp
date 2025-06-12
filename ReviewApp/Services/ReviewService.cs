@@ -110,5 +110,7 @@ namespace ReviewApp.Services
         {
             return _reviews.FirstOrDefault(r => r.Id == reviewId);
         }
+
+        public async Task<ObservableCollection<Review>> GetReviewsAsync() => _reviews;
     }
 }
