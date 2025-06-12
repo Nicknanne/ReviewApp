@@ -10,12 +10,14 @@ namespace ReviewApp.Services
         private readonly string _filePath;
         private ObservableCollection<Game> _games;
 
+        private Task _initialLoadTask;
+
         public GamesService()
         {
             _filePath = Path.Combine(FileSystem.AppDataDirectory, "games.json");
             _games = new();
 
-            _ = LoadGamesAsync();
+            _initialLoadTask = LoadGamesAsync();
         }
 
         private async Task LoadGamesAsync()
@@ -62,6 +64,8 @@ namespace ReviewApp.Services
 
         public async Task<Game> AddGameAsync(Game game)
         {
+            await _initialLoadTask;
+
             game.Id = _games.Any() ? _games.Max(g => g.Id) + 1 : 1;
             _games.Add(game);
             await SaveGamesAsync();
@@ -70,6 +74,8 @@ namespace ReviewApp.Services
 
         public async Task DeleteGameAsync(int gameId)
         {
+            await _initialLoadTask;
+
             var gameToRemove = _games.FirstOrDefault(g => g.Id == gameId);
             if (gameToRemove != null)
             {
@@ -80,11 +86,13 @@ namespace ReviewApp.Services
 
         public async Task<Game?> GetGameByIdAsync(int gameId)
         {
+            await _initialLoadTask;
             return _games.FirstOrDefault(g => g.Id == gameId);
         }
 
         public async Task<Game> UpdateGameAsync(Game game)
         {
+            await _initialLoadTask;
             var existingGame = _games.FirstOrDefault(g => g.Id == game.Id);
             if (existingGame != null)
             {
@@ -99,6 +107,13 @@ namespace ReviewApp.Services
                 return game;
             }
             return null;
+        }
+
+        public async Task<ObservableCollection<Game>> GetGamesAsync()
+        {
+            await _initialLoadTask;
+
+            return _games;
         }
     }
 }

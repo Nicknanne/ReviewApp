@@ -10,5 +10,6 @@ namespace ReviewApp.Services
         Task<Review> UpdateReviewAsync(Review updatedReview);
         Task DeleteReviewAsync(int reviewId);
         Task<Review?> GetReviewByIdAsync(int reivewId);
+        Task<ObservableCollection<Review>> GetReviewsAsync();
     }
 }
