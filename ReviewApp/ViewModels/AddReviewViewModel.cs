@@ -89,16 +89,16 @@ namespace ReviewApp.ViewModels
             {
                 UserId = -1,
                 GameId = SelectedGame.Id,
-                Title = CommentText.Length > 50 ? CommentText.Substring(0, 50) + "..." : CommentText,
+                Title = SelectedGame.Title,
                 Comment = CommentText,
                 GameStatus = SelectedGameStatus, 
-                Graphics = GraphicsRating,
-                Gameplay = GameplayRating,
-                Sound = SoundRating,
-                PlotAndLore = PlotAndLoreRating,
-                Impression = ImpressionRating,
-                Immersive = ImmersiveRating,
-                Replaybility = ReplaybilityRating
+                Graphics = (int)GraphicsRating,
+                Gameplay = (int)GameplayRating,
+                Sound = (int)SoundRating,
+                PlotAndLore = (int)PlotAndLoreRating,
+                Impression = (int)ImpressionRating,
+                Immersive = (int)ImmersiveRating,
+                Replaybility = (int)ReplaybilityRating
             };
 
             try

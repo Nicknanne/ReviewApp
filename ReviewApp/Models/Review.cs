@@ -19,7 +19,7 @@
         public double Immersive { get; set; }
         public double Replaybility { get; set; }
 
-        public double OverallRating => (Graphics + Gameplay + Sound + PlotAndLore + Impression + Immersive + Replaybility) / 7;
+        public double OverallRating => Math.Round((Graphics + Gameplay + Sound + PlotAndLore + Impression + Immersive + Replaybility) / 7, 2);
 
         public Review() { }
     }
