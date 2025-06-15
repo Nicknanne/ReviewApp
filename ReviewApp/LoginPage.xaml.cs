@@ -12,6 +12,6 @@ public partial class LoginPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-		await Shell.Current.GoToAsync("//MainPage");
+		await Shell.Current.GoToAsync(nameof(MainPage));
     }
 }

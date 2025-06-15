@@ -9,6 +9,6 @@ public partial class MainPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-		Shell.Current.GoToAsync("//AddReviewPage");
+		Shell.Current.GoToAsync(nameof(AddReviewPage));
     }
 }

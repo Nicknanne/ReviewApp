@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using ReviewApp.Services;
+using ReviewApp.ViewModels;
 
 namespace ReviewApp;
 
@@ -21,6 +22,7 @@ public static class MauiProgram
 
 		builder.Services.AddTransient<LoginPage>();
 		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<AddReviewViewModel>();
 		builder.Services.AddTransient<AddReviewPage>();
 
 #if DEBUG
