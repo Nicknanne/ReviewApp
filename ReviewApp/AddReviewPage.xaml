@@ -6,10 +6,14 @@
              x:Class="ReviewApp.AddReviewPage"
              Title="AddReviewPage">
 
+    <ContentPage.BindingContext>
+        <viewmodels:AddReviewViewModel />
+    </ContentPage.BindingContext>
+
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
         <Label Text="Choose game" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center"></Label>
-        <SearchBar Placeholder="Find game" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="300" HeightRequest="40" Text="{Binding SearchQuery}" SearchCommand="{Binding PerformSearchCommand}"></SearchBar>
-        <Picker ItemsSource="{Binding AvailableGames}" SelectedItem="{Binding SelectedGame}" ItemDisplayBinding="{Binding Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="300" HeightRequest="40"></Picker>
+        <SearchBar Placeholder="Find game" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" WidthRequest="300" HeightRequest="40" Text="{Binding SearchQuery}"></SearchBar>
+        <Picker ItemsSource="{Binding FilteredGames}" SelectedItem="{Binding SelectedGame}" SelectedIndex="{Binding SelectedGameIndex, Mode=TwoWay}" ItemDisplayBinding="{Binding Title}" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" WidthRequest="300" HeightRequest="40"></Picker>
         <Editor Placeholder="Your comment" WidthRequest="300" HeightRequest="100" Text="{Binding CommentText}"></Editor>
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
             <controls:RatingSliderControl TitleText="Graphics:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding GraphicsRating}"></controls:RatingSliderControl>

@@ -9,20 +9,49 @@ namespace ReviewApp.ViewModels
 {
     public partial class AddReviewViewModel : ObservableObject
     {
+        public AddReviewViewModel() { }
+
         private readonly IGamesService _gamesService;
         private readonly IReviewService _reviewService;
 
         [ObservableProperty]
+        private ObservableCollection<Game> _filteredGames = new();
+
         private ObservableCollection<Game> _availableGames = new();
 
         [ObservableProperty]
         private Game? _selectedGame;
 
         [ObservableProperty]
+        private int? _selectedGameIndex;
+
+        [ObservableProperty]
         private string? _commentText;
 
         [ObservableProperty]
         private string? _searchQuery;
+
+        partial void OnSearchQueryChanged(string value)
+        {
+            _filteredGames.Clear();
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                foreach (var game in _availableGames)
+                {
+                    _filteredGames.Add(game);
+                }
+                SelectedGameIndex = 0;
+            }
+            else
+            {
+                foreach (var game in _availableGames.Where(x => x.Title!.Contains(value, StringComparison.CurrentCultureIgnoreCase)))
+                {
+                    _filteredGames.Add(game);
+                }
+                if (_filteredGames.Count > 0)
+                    SelectedGameIndex = 0;
+            }
+        }
 
         [ObservableProperty]
         private double _graphicsRating = 5;
@@ -47,12 +76,12 @@ namespace ReviewApp.ViewModels
         {
             if (SelectedGame == null)
             {
-                await Application.Current.MainPage!.DisplayAlert("Ошибка", "Пожалуйста, выберите игру", "ОК");
+                await Application.Current!.MainPage!.DisplayAlert("Ошибка", "Пожалуйста, выберите игру", "ОК");
                 return;
             }
             if (string.IsNullOrWhiteSpace(CommentText))
             {
-                await Application.Current.MainPage!.DisplayAlert("Ошибка", "Пожалуйста, выберите игру", "ОК");
+                await Application.Current!.MainPage!.DisplayAlert("Ошибка", "Пожалуйста, выберите игру", "ОК");
                 return;
             }
 
@@ -78,18 +107,18 @@ namespace ReviewApp.ViewModels
 
                 if (savedReview != null)
                 {
-                    await Application.Current.MainPage!.DisplayAlert("Успех", "Рецензия успешно сохранена!", "ОК");
+                    await Application.Current!.MainPage!.DisplayAlert("Успех", "Рецензия успешно сохранена!", "ОК");
                     await Shell.Current.GoToAsync(".."); 
                 }
                 else
                 {
-                    await Application.Current.MainPage!.DisplayAlert("Ошибка", "Не удалось сохранить рецензию. Попробуйте еще раз.", "ОК");
+                    await Application.Current!.MainPage!.DisplayAlert("Ошибка", "Не удалось сохранить рецензию. Попробуйте еще раз.", "ОК");
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Ошибка сохранения рецензии: {ex.Message}");
-                await Application.Current.MainPage!.DisplayAlert("Ошибка", $"Произошла ошибка: {ex.Message}", "ОК");
+                await Application.Current!.MainPage!.DisplayAlert("Ошибка", $"Произошла ошибка: {ex.Message}", "ОК");
             }
         }
 
@@ -106,7 +135,12 @@ namespace ReviewApp.ViewModels
             var games = await _gamesService.GetGamesAsync();
             if (games != null)
             {
-                AvailableGames = new ObservableCollection<Game>(games);
+                _availableGames = new(games);
+                foreach (var game in _availableGames)
+                {
+                    FilteredGames.Add(game);
+                }
+                SelectedGameIndex = 0;
             }
         }
     }
