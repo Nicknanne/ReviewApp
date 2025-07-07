@@ -4,11 +4,21 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ReviewApp"
-    Shell.FlyoutBehavior="Disabled"
+    Shell.FlyoutBehavior="Locked"
+    FlyoutWidth="200"
     Title="ReviewApp">
 
     <ShellContent
+        FlyoutItemIsVisible="False"
+        Shell.FlyoutBehavior="Disabled"
         Title="Login"
         ContentTemplate="{DataTemplate local:LoginPage}"
         Route="LoginPage" />
+
+    <FlyoutItem Title="Reviews" Icon="dotnet_bot.png">
+        <ShellContent Title="Меню" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"></ShellContent>
+    </FlyoutItem>
+    <FlyoutItem Title="Add review" Icon="dotnet_bot.png">
+        <ShellContent Title="Создать ревью" ContentTemplate="{DataTemplate local:AddReviewPage}" Route="AddReviewPage"></ShellContent>
+    </FlyoutItem>
 </Shell>
