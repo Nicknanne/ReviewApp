@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ReviewApp.MainPage"
-             Title="MainPage">
+             Title="MainPage"
+             Shell.NavBarIsVisible="False">
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Button Text="Go to add review page" Clicked="Button_Clicked"></Button>
+        <Button Text="Go to add review page" Command="{Binding GoToAddReviewPageCommand}"></Button>
     </VerticalStackLayout>
 </ContentPage>

@@ -2,13 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:ReviewApp.Controls"
-             xmlns:viewmodels="clr-namespace:ReviewApp.ViewModels"
              x:Class="ReviewApp.AddReviewPage"
-             Title="AddReviewPage">
-
-    <ContentPage.BindingContext>
-        <viewmodels:AddReviewViewModel />
-    </ContentPage.BindingContext>
+             Title="AddReviewPage"
+             Shell.NavBarIsVisible="False">
 
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
         <Label Text="Choose game" FontSize="20" VerticalOptions="Center" HorizontalOptions="Center"></Label>

@@ -20,7 +20,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<IReviewService, ReviewService>();
 		builder.Services.AddSingleton<IGamesService, GamesService>();
 
+		builder.Services.AddTransient<LoginPageViewModel>();
 		builder.Services.AddTransient<LoginPage>();
+		builder.Services.AddTransient<MainPageViewModel>();
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<AddReviewViewModel>();
 		builder.Services.AddTransient<AddReviewPage>();

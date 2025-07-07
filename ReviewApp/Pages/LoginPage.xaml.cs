@@ -1,17 +1,12 @@
-using ReviewApp.Models;
-using ReviewApp.Services;
+using ReviewApp.ViewModels;
 
 namespace ReviewApp;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+	public LoginPage(LoginPageViewModel viewModel)
 	{
 		InitializeComponent();
+		BindingContext = viewModel;
 	}
-
-    private async void Button_Clicked(object sender, EventArgs e)
-    {
-		await Shell.Current.GoToAsync(nameof(MainPage));
-    }
 }

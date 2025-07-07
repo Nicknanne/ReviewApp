@@ -9,7 +9,7 @@
         <Label Text="Auth" FontSize="24" WidthRequest="200" HorizontalTextAlignment="Center"></Label>
         <Entry Text="" Placeholder="Username" WidthRequest="300"></Entry>
         <Entry Text="" Placeholder="Password" WidthRequest="300" IsPassword="True"></Entry>
-        <Button Text="Login" FontSize="18" Clicked="Button_Clicked" WidthRequest="150"></Button>
+        <Button Text="Login" FontSize="18" Command="{Binding LoginCommand}" WidthRequest="150"></Button>
     </VerticalStackLayout>
 </ContentPage>
     

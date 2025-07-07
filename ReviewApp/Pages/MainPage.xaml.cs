@@ -1,14 +1,12 @@
+using ReviewApp.ViewModels;
+
 namespace ReviewApp;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	public MainPage(MainPageViewModel viewModel)
 	{
 		InitializeComponent();
+		BindingContext = viewModel;
 	}
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-		Shell.Current.GoToAsync(nameof(AddReviewPage));
-    }
 }

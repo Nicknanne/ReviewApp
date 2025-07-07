@@ -9,8 +9,6 @@ namespace ReviewApp.ViewModels
 {
     public partial class AddReviewViewModel : ObservableObject
     {
-        public AddReviewViewModel() { }
-
         private readonly IGamesService _gamesService;
         private readonly IReviewService _reviewService;
 
