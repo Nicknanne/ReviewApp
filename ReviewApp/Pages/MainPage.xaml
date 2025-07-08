@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ReviewApp.ViewModels"
              x:Class="ReviewApp.MainPage"
              Title="MainPage"
              Shell.NavBarIsVisible="False">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Button Text="Go to add review page" Command="{Binding GoToAddReviewPageCommand}"></Button>
+    <VerticalStackLayout Spacing="20">
+        <SearchBar></SearchBar>
+        <CollectionView ItemsSource="{Binding Reviews}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" Orientation="Vertical"></GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:ReviewItemViewModel">
+                    <Border BackgroundColor="#FF383838"
+                        WidthRequest="580"
+                        HeightRequest="220"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="1"
+                        StrokeLineJoin="Round">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding GameTitle}"
+                                Padding="10,6"
+                                FontSize="26"
+                                Grid.Row="0"
+                                Grid.Column="0"></Label>
+                            <Button Text="View"
+                                Padding="10,6"
+                                HorizontalOptions="End"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                WidthRequest="120"></Button>
+
+                            <ScrollView
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                                <Label Text="{Binding Comment}"
+                                    Padding="10,6"
+                                    FontSize="14"></Label>
+                            </ScrollView>
+                            <Label Text="{Binding Rating}"
+                                Padding="10,6"
+                                FontSize="14"
+                                Grid.Row="1"
+                                Grid.Column="2"></Label>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
