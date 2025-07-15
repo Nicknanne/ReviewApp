@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ReviewApp"
     Shell.FlyoutBehavior="Locked"
-    FlyoutWidth="200"
+    FlyoutWidth="160"
     Title="ReviewApp">
 
     <ShellContent
@@ -15,10 +15,11 @@
         ContentTemplate="{DataTemplate local:LoginPage}"
         Route="LoginPage" />
 
-    <FlyoutItem Title="Reviews" Icon="dotnet_bot.png">
+    <FlyoutItem Title="One review" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Меню" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"></ShellContent>
     </FlyoutItem>
-    <FlyoutItem Title="Add review" Icon="dotnet_bot.png">
+    
+    <FlyoutItem Title="Two review" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Создать ревью" ContentTemplate="{DataTemplate local:AddReviewPage}" Route="AddReviewPage"></ShellContent>
     </FlyoutItem>
 </Shell>

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
+using ReviewApp.Popups;
 using ReviewApp.Services;
 using ReviewApp.ViewModels;
 
@@ -11,6 +13,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -27,8 +30,11 @@ public static class MauiProgram
 		builder.Services.AddTransient<AddReviewViewModel>();
 		builder.Services.AddTransient<AddReviewPage>();
 
+		builder.Services.AddTransient<ReviewDetailsViewModel>();
+		builder.Services.AddTransient<ReviewDetailsPopup>();
+
 #if DEBUG
-        builder.Logging.AddDebug();
+		builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
