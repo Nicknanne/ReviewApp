@@ -40,7 +40,8 @@
                                 HorizontalOptions="End"
                                 Grid.Row="0"
                                 Grid.Column="2"
-                                WidthRequest="120"></Button>
+                                WidthRequest="120"
+                                Command="{Binding OpenReviewDetailsPopapCommand}"></Button>
 
                             <ScrollView
                                 Grid.Row="1"

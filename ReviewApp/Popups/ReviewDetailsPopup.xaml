@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ReviewApp.Popups.ReviewDetailsPopup"
+             Color="Transparent"
+             CanBeDismissedByTappingOutsideOfPopup="True">
+
+    <Border BackgroundColor="#FF272727"
+            StrokeShape="RoundRectangle 10"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+       <Grid WidthRequest="700" HeightRequest="500" RowSpacing="4" ColumnSpacing="4" Padding="10">
+              <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                     <RowDefinition Height="50"></RowDefinition>
+                     <RowDefinition Height="2*"></RowDefinition>
+                     <RowDefinition Height="*"></RowDefinition>
+                     <RowDefinition Height="*"></RowDefinition>
+                     <RowDefinition Height="50"></RowDefinition>
+              </Grid.RowDefinitions>
+              <Label Text="{Binding GameTitle}"
+                     FontSize="Large"
+                     FontAttributes="Bold"
+                     HorizontalTextAlignment="Center" 
+                     Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     Grid.Row="0"/>
+              <ScrollView
+                     Grid.Column="0"
+                     Grid.ColumnSpan="4"
+                     Grid.Row="1"
+                     BackgroundColor="Black"
+                     Padding="10,6">
+                     <Label Text="{Binding Comment}"
+                            FontSize="14"/>
+              </ScrollView>
+
+              <Border BackgroundColor="Black"
+                     StrokeShape="RoundRectangle 4"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Grid.Column="4"
+                     Grid.Row="0">
+                     <VerticalStackLayout>
+                            <Label Text="Completed" Margin="6"/>
+                     </VerticalStackLayout>
+              </Border>
+
+              <Button Text="Закрыть"
+                     Command="{Binding ClosePopupCommand}"
+                     BackgroundColor="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}"
+                     TextColor="White"
+                     CornerRadius="10"
+                     Grid.Column="2"
+                     Grid.Row="4"/>
+
+              <Slider Value="3" Minimum="0" Maximum="10" Grid.Column="0" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Slider Value="4" Minimum="0" Maximum="10" Grid.Column="1" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Slider Value="5" Minimum="0" Maximum="10" Grid.Column="2" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Slider Value="6" Minimum="0" Maximum="10" Grid.Column="3" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Slider Value="7" Minimum="0" Maximum="10" Grid.Column="0" Grid.Row="3" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Slider Value="8" Minimum="0" Maximum="10" Grid.Column="1" Grid.Row="3" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Slider Value="9" Minimum="0" Maximum="10" Grid.Column="2" Grid.Row="3" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+
+              <Slider Value="10" Minimum="0" Maximum="10" Grid.Column="4" Grid.Row="2" Grid.RowSpan="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+       </Grid>
+    </Border>
+</toolkit:Popup>

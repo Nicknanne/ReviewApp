@@ -1,7 +1,9 @@
 using System.Text;
+using CommunityToolkit.Maui.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ReviewApp.Models;
+using ReviewApp.Popups;
 
 namespace ReviewApp.ViewModels
 {
@@ -32,8 +34,13 @@ namespace ReviewApp.ViewModels
 
         public string? Rating { get; set; }
 
+        private Review _review;
+        private Game _game;
         public ReviewItemViewModel(Review review, Game game)
         {
+            _review = review;
+            _game = game;
+
             Comment = review.Comment;
             Graphics = review.Graphics;
             Gameplay = review.Gameplay;
@@ -60,6 +67,13 @@ namespace ReviewApp.ViewModels
             sb.AppendLine($"Replaybility: {Replaybility}");
             sb.AppendLine($"Overall rating: {OverallRating}");
             Rating = sb.ToString();
+        }
+
+        [RelayCommand]
+        private async Task OpenReviewDetailsPopap()
+        {
+            var reviewDetailsPopup = new ReviewDetailsPopup(new ReviewDetailsViewModel(_review, _game));
+            await Shell.Current.ShowPopupAsync(reviewDetailsPopup);
         }
     }
 }
