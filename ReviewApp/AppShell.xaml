@@ -17,6 +17,7 @@
 
     <FlyoutItem Title="One review" FlyoutDisplayOptions="AsMultipleItems">
         <ShellContent Title="Меню" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"></ShellContent>
+        <ShellContent Title="Все игры" ContentTemplate="{DataTemplate local:AllGamesPage}" Route="AllGamesPage"></ShellContent>
     </FlyoutItem>
     
     <FlyoutItem Title="Two review" FlyoutDisplayOptions="AsMultipleItems">

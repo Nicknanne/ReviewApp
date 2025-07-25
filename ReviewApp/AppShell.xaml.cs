@@ -10,6 +10,7 @@ namespace ReviewApp
             Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
             Routing.RegisterRoute(nameof(AddReviewPage), typeof(AddReviewPage));
             Routing.RegisterRoute(nameof(ReviewDetailsPopup), typeof(ReviewDetailsPopup));
+            Routing.RegisterRoute(nameof(AllGamesPage), typeof(AllGamesPage));
         }
     }
 }

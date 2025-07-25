@@ -29,6 +29,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<MainPage>();
 		builder.Services.AddTransient<AddReviewViewModel>();
 		builder.Services.AddTransient<AddReviewPage>();
+		builder.Services.AddTransient<AllGamesViewModel>();
+		builder.Services.AddTransient<AllGamesPage>();
 
 		builder.Services.AddTransient<ReviewDetailsViewModel>();
 		builder.Services.AddTransient<ReviewDetailsPopup>();
