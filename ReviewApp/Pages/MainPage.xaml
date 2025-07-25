@@ -4,7 +4,8 @@
              xmlns:viewModels="clr-namespace:ReviewApp.ViewModels"
              x:Class="ReviewApp.MainPage"
              Title="MainPage"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False">
     <VerticalStackLayout Spacing="20">
         <SearchBar></SearchBar>
         <CollectionView ItemsSource="{Binding Reviews}">
