@@ -37,31 +37,32 @@ namespace ReviewApp.ViewModels
             _page = 0;
             _maxPage = (int)MathF.Ceiling(_allGames.Count / 10f);
 
-            var viewGames = _allGames.Skip(_page * 10).Take(_page * 10 + 10);
-
-            foreach (var game in viewGames)
-            {
-                Games.Add(new(new(), game));
-            }
-
-            PageLabel = $"Page {_page + 1}";
+            await UpdateGames(_page);
         }
 
-        private void UpdateGames(int page)
+        private async Task UpdateGames(int page)
         {
             Games.Clear();
 
-            _page = page;
-            _maxPage = (int)MathF.Ceiling(_allGames.Count / 10f);
-
-            var viewGames = _allGames.Skip(_page * 10).Take(10);
-
-            foreach (var game in viewGames)
+            var newGameItems = await Task.Run(() =>
             {
-                Games.Add(new(new(), game));
+                var viewGames = _allGames.Skip(page * 10).Take(10);
+
+                var tempGameItems = new List<GameItemViewModel>();
+                foreach (var game in viewGames)
+                {
+                    tempGameItems.Add(new(new(), game));
+                }
+
+                return tempGameItems;
+            });
+
+            foreach (var gameItem in newGameItems)
+            {
+                Games.Add(gameItem);
             }
 
-            PageLabel = $"Page {_page + 1}";
+            PageLabel = $"Page {page + 1}";
         }
 
         [RelayCommand]
@@ -69,7 +70,7 @@ namespace ReviewApp.ViewModels
         {
             if (_page == _maxPage - 1)
                 return;
-            UpdateGames(++_page);
+            await UpdateGames(++_page);
         }
 
         [RelayCommand]
@@ -77,7 +78,7 @@ namespace ReviewApp.ViewModels
         {
             if (_page == 0)
                 return;
-            UpdateGames(--_page);
+            await UpdateGames(--_page);
         }
 
         public ObservableCollection<GameItemViewModel> Games { get; set; } = new ObservableCollection<GameItemViewModel>();

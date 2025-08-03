@@ -6,67 +6,66 @@
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
              
-    <ScrollView>
-        <VerticalStackLayout Spacing="20">
-            <SearchBar></SearchBar>
-            <CollectionView ItemsSource="{Binding Games}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" Orientation="Vertical"></GridItemsLayout>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="viewModels:GameItemViewModel">
-                        <Border BackgroundColor="#FF383838"
-                            WidthRequest="580"
-                            HeightRequest="220"
-                            StrokeShape="RoundRectangle 10"
-                            StrokeThickness="1"
-                            StrokeLineJoin="Round">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="160"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
+    <Grid RowDefinitions="Auto, *, Auto">
+        <SearchBar Grid.Row="0"></SearchBar>
+        <CollectionView ItemsSource="{Binding Games}" Grid.Row="1">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" Orientation="Vertical"></GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:GameItemViewModel">
+                    <Border BackgroundColor="#FF383838"
+                        WidthRequest="580"
+                        HeightRequest="220"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="1"
+                        StrokeLineJoin="Round">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-                                <Label Text="{Binding GameTitle}"
-                                    Padding="10,6"
-                                    FontSize="20"
-                                    Grid.Row="0"
-                                    Grid.Column="0"></Label>
-                                <Button Text="View"
-                                    Padding="10,6"
-                                    HorizontalOptions="End"
-                                    Grid.Row="0"
-                                    Grid.Column="2"
-                                    WidthRequest="120"></Button>
+                            <Label Text="{Binding GameTitle}"
+                                Padding="10,6"
+                                FontSize="20"
+                                Grid.Row="0"
+                                Grid.Column="0"></Label>
+                            <Button Text="View"
+                                Padding="10,6"
+                                HorizontalOptions="End"
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                WidthRequest="120"></Button>
 
-                                <ScrollView
-                                    Grid.Row="1"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2">
-                                    <Label Text="{Binding Description}"
-                                        Padding="10,6"
-                                        FontSize="14"></Label>
-                                </ScrollView>
-                                <Label Text="{Binding Platforms}"
+                            <ScrollView
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                                <Label Text="{Binding Description}"
                                     Padding="10,6"
-                                    FontSize="14"
-                                    Grid.Row="1"
-                                    Grid.Column="2"></Label>
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <HorizontalStackLayout HeightRequest="100" Spacing="20" HorizontalOptions="Center">
-                <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding PreviousPageCommand}"></Button>
-                <Label Text="{Binding PageLabel}" VerticalOptions="Center" FontSize="24"></Label>
-                <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding NextPageCommand}"></Button>
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
-    </ScrollView>
+                                    FontSize="14"></Label>
+                            </ScrollView>
+                            <Label Text="{Binding Platforms}"
+                                Padding="10,6"
+                                FontSize="14"
+                                Grid.Row="1"
+                                Grid.Column="2"></Label>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <HorizontalStackLayout HeightRequest="70" Spacing="20" HorizontalOptions="Center" Grid.Row="2">
+            <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding PreviousPageCommand}"></Button>
+            <Label Text="{Binding PageLabel}" VerticalOptions="Center" FontSize="24"></Label>
+            <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding NextPageCommand}"></Button>
+        </HorizontalStackLayout>
+    </Grid>
+
 </ContentPage>
