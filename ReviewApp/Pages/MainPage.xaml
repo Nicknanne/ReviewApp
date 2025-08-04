@@ -6,9 +6,10 @@
              Title="MainPage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
-    <VerticalStackLayout Spacing="20">
-        <SearchBar></SearchBar>
-        <CollectionView ItemsSource="{Binding Reviews}">
+             
+    <Grid RowDefinitions="Auto, *, Auto">
+        <SearchBar Grid.Row="0"></SearchBar>
+        <CollectionView ItemsSource="{Binding Reviews}" Grid.Row="1">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" Orientation="Vertical"></GridItemsLayout>
             </CollectionView.ItemsLayout>
@@ -62,5 +63,10 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </VerticalStackLayout>
+        <HorizontalStackLayout HeightRequest="70" Spacing="20" HorizontalOptions="Center" Grid.Row="2">
+            <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding PreviousPageCommand}"></Button>
+            <Label Text="{Binding PageLabel}" VerticalOptions="Center" FontSize="24"></Label>
+            <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding NextPageCommand}"></Button>
+        </HorizontalStackLayout>
+    </Grid>
 </ContentPage>
