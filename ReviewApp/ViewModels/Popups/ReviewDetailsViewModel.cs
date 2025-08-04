@@ -65,12 +65,19 @@ namespace ReviewApp.ViewModels
             Immersive = review.Immersive;
             Replaybility = review.Replaybility;
 
-            GameTitle = game.Title;
-            ReleaseDate = game.ReleaseDate;
-            Platforms = game.Platforms;
-            Genre = game.Genre;
-            Developer = game.Developer;
-            Description = game.Description;
+            if (game != null)
+            {
+                GameTitle = game.Title;
+                ReleaseDate = game.ReleaseDate;
+                Platforms = game.Platforms;
+                Genre = game.Genre;
+                Developer = game.Developer;
+                Description = game.Description;
+            }
+            else
+            {
+                GameTitle = review.Title;
+            }
 
             var sb = new StringBuilder();
             sb.AppendLine($"Graphics: {Graphics}");

@@ -24,32 +24,35 @@ namespace ReviewApp.ViewModels
         private int? _selectedGameIndex;
 
         [ObservableProperty]
-        private string? _commentText;
+        private string? _gameTitle;
 
         [ObservableProperty]
-        private string? _searchQuery;
+        private string? _commentText;
 
-        partial void OnSearchQueryChanged(string value)
-        {
-            _filteredGames.Clear();
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                foreach (var game in _availableGames)
-                {
-                    _filteredGames.Add(game);
-                }
-                SelectedGameIndex = 0;
-            }
-            else
-            {
-                foreach (var game in _availableGames.Where(x => x.Title!.Contains(value, StringComparison.CurrentCultureIgnoreCase)))
-                {
-                    _filteredGames.Add(game);
-                }
-                if (_filteredGames.Count > 0)
-                    SelectedGameIndex = 0;
-            }
-        }
+        // [ObservableProperty]
+        // private string? _searchQuery;
+
+        // partial void OnSearchQueryChanged(string value)
+        // {
+        //     _filteredGames.Clear();
+        //     if (string.IsNullOrWhiteSpace(value))
+        //     {
+        //         foreach (var game in _availableGames)
+        //         {
+        //             _filteredGames.Add(game);
+        //         }
+        //         SelectedGameIndex = 0;
+        //     }
+        //     else
+        //     {
+        //         foreach (var game in _availableGames.Where(x => x.Title!.Contains(value, StringComparison.CurrentCultureIgnoreCase)))
+        //         {
+        //             _filteredGames.Add(game);
+        //         }
+        //         if (_filteredGames.Count > 0)
+        //             SelectedGameIndex = 0;
+        //     }
+        // }
 
         [ObservableProperty]
         private double _graphicsRating = 5;
@@ -72,11 +75,6 @@ namespace ReviewApp.ViewModels
         [RelayCommand]
         private async Task SubmitReview()
         {
-            if (SelectedGame == null)
-            {
-                await Application.Current!.MainPage!.DisplayAlert("Ошибка", "Пожалуйста, выберите игру", "ОК");
-                return;
-            }
             if (string.IsNullOrWhiteSpace(CommentText))
             {
                 await Application.Current!.MainPage!.DisplayAlert("Ошибка", "Пожалуйста, выберите игру", "ОК");
@@ -86,10 +84,10 @@ namespace ReviewApp.ViewModels
             var newReview = new Review
             {
                 UserId = -1,
-                GameId = SelectedGame.Id,
-                Title = SelectedGame.Title,
+                GameId = -1,
+                Title = GameTitle,
                 Comment = CommentText,
-                GameStatus = SelectedGameStatus, 
+                GameStatus = SelectedGameStatus,
                 Graphics = (int)GraphicsRating,
                 Gameplay = (int)GameplayRating,
                 Sound = (int)SoundRating,
@@ -106,7 +104,7 @@ namespace ReviewApp.ViewModels
                 if (savedReview != null)
                 {
                     await Application.Current!.MainPage!.DisplayAlert("Успех", "Рецензия успешно сохранена!", "ОК");
-                    await Shell.Current.GoToAsync(".."); 
+                    await Shell.Current.GoToAsync("..");
                 }
                 else
                 {
