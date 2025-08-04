@@ -32,44 +32,45 @@
                      Grid.Column="0"
                      Grid.ColumnSpan="3"
                      Grid.Row="0"/>
-              <ScrollView
-                     Grid.Column="0"
+              <ScrollView Grid.Column="0"
                      Grid.ColumnSpan="4"
                      Grid.Row="1"
-                     BackgroundColor="Black"
                      Padding="10,6">
                      <Label Text="{Binding Comment}"
                             FontSize="14"/>
               </ScrollView>
 
-              <Border BackgroundColor="Black"
-                     StrokeShape="RoundRectangle 4"
+              <Border StrokeShape="RoundRectangle 4"
                      HorizontalOptions="Center"
                      VerticalOptions="Center"
-                     Grid.Column="4"
+                     Grid.Column="3"
                      Grid.Row="0">
                      <VerticalStackLayout>
                             <Label Text="{Binding GameStatus}" Margin="6"/>
                      </VerticalStackLayout>
               </Border>
 
+              <Button Text="Копировать"
+                     FontSize="14"
+                     Command="{Binding CopyReviewCommand}"
+                     Grid.Column="4"
+                     Grid.Row="0"
+                     HeightRequest="30"/>
+
               <Button Text="Закрыть"
                      Command="{Binding ClosePopupCommand}"
-                     BackgroundColor="{AppThemeBinding Light=#512BD4, Dark=#2B0B98}"
-                     TextColor="White"
-                     CornerRadius="10"
                      Grid.Column="2"
                      Grid.Row="4"/>
 
-              <Slider Value="3" Minimum="0" Maximum="10" Grid.Column="0" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
-              <Slider Value="4" Minimum="0" Maximum="10" Grid.Column="1" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
-              <Slider Value="5" Minimum="0" Maximum="10" Grid.Column="2" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
-              <Slider Value="6" Minimum="0" Maximum="10" Grid.Column="3" Grid.Row="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
-              <Slider Value="7" Minimum="0" Maximum="10" Grid.Column="0" Grid.Row="3" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
-              <Slider Value="8" Minimum="0" Maximum="10" Grid.Column="1" Grid.Row="3" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
-              <Slider Value="9" Minimum="0" Maximum="10" Grid.Column="2" Grid.Row="3" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Label Text="{Binding GraphicsText}" FontSize="14" Grid.Column="0" Grid.Row="2" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Center"/>
+              <Label Text="{Binding GameplayText}" FontSize="14" Grid.Column="1" Grid.Row="2" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Start"/>
+              <Label Text="{Binding SoundText}" FontSize="14" Grid.Column="2" Grid.Row="2" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Start"/>
+              <Label Text="{Binding PlotAndLoreText}" FontSize="14" Grid.Column="3" Grid.Row="2" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Start"/>
+              <Label Text="{Binding ImpressionText}" FontSize="14" Grid.Column="0" Grid.Row="3" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Start"/>
+              <Label Text="{Binding ImmersiveText}" FontSize="14" Grid.Column="1" Grid.Row="3" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Start"/>
+              <Label Text="{Binding ReplaybilityText}" FontSize="14" Grid.Column="2" Grid.Row="3" WidthRequest="100" VerticalOptions="Center" HorizontalOptions="Start"/>
 
-              <Slider Value="10" Minimum="0" Maximum="10" Grid.Column="4" Grid.Row="2" Grid.RowSpan="2" WidthRequest="80" VerticalOptions="Center" HorizontalOptions="Start" IsEnabled="False"/>
+              <Label Text="{Binding OverallRatingText}" FontSize="20" Grid.Column="4" Grid.Row="2" Grid.RowSpan="2" WidthRequest="140" VerticalOptions="Center" HorizontalOptions="Start" HorizontalTextAlignment="Center"/>
        </Grid>
     </Border>
 </toolkit:Popup>

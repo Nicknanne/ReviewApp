@@ -9,6 +9,23 @@ namespace ReviewApp.ViewModels
 {
     public partial class ReviewDetailsViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private string? _graphicsText;
+        [ObservableProperty]
+        private string? _gameplayText;
+        [ObservableProperty]
+        private string? _soundText;
+        [ObservableProperty]
+        private string? _plotAndLoreText;
+        [ObservableProperty]
+        private string? _impressionText;
+        [ObservableProperty]
+        private string? _immersiveText;
+        [ObservableProperty]
+        private string? _replaybilityText;
+        [ObservableProperty]
+        private string? _overallRatingText;
+
         // review.cs
         [ObservableProperty]
         private int _id;
@@ -55,8 +72,8 @@ namespace ReviewApp.ViewModels
 
         public Action ClosePopupAction;
         public ReviewDetailsViewModel(Review review, Game game)
-        { 
-            Comment = review.Comment;
+        {
+            Comment = $"Comment:\n{review.Comment}";
             Graphics = review.Graphics;
             Gameplay = review.Gameplay;
             Sound = review.Sound;
@@ -81,6 +98,15 @@ namespace ReviewApp.ViewModels
                 GameStatus = review.GameStatus;
             }
 
+            GraphicsText = $"Graphics: {Graphics}";
+            GameplayText = $"Gameplay: {Gameplay}";
+            SoundText = $"Sound: {Sound}";
+            PlotAndLoreText = $"Plot and lore: {PlotAndLore}";
+            ImpressionText = $"Impression: {Impression}";
+            ImmersiveText = $"Immersive: {Immersive}";
+            ReplaybilityText = $"Replaybility: {Replaybility}";
+            OverallRatingText = $"Overall rating: {OverallRating}";
+
             var sb = new StringBuilder();
             sb.AppendLine($"Graphics: {Graphics}");
             sb.AppendLine($"Gameplay: {Gameplay}");
@@ -94,9 +120,27 @@ namespace ReviewApp.ViewModels
         }
 
         [RelayCommand]
-        private async Task ClosePopup()
+        private void ClosePopup()
         {
             ClosePopupAction?.Invoke();
+        }
+
+        [RelayCommand]
+        private async Task CopyReview()
+        {
+            string bufferText = $"Оценка игры {GameTitle}\n\n" +
+            $"{Comment}\n\n" +
+            $"Graphics: {Graphics}\n" +
+            $"Gameplay: {Gameplay}\n" +
+            $"Sound: {Sound}\n" +
+            $"Plot and lore: {PlotAndLore}\n" +
+            $"Impression: {Impression}\n" +
+            $"Immersive: {Immersive}\n" +
+            $"Replaybility: {Replaybility}\n" +
+            $"Overall rating: {OverallRating}\n\n" +
+            $"Telegram: https://t.me/+IKmuGfr8vK44ZjI6";
+
+            await Clipboard.SetTextAsync(bufferText);
         }
     }
 }
