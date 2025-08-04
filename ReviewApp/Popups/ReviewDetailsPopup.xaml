@@ -49,7 +49,7 @@
                      Grid.Column="4"
                      Grid.Row="0">
                      <VerticalStackLayout>
-                            <Label Text="Completed" Margin="6"/>
+                            <Label Text="{Binding GameStatus}" Margin="6"/>
                      </VerticalStackLayout>
               </Border>
 

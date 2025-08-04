@@ -68,6 +68,7 @@ namespace ReviewApp.ViewModels
             if (game != null)
             {
                 GameTitle = game.Title;
+                GameStatus = review.GameStatus;
                 ReleaseDate = game.ReleaseDate;
                 Platforms = game.Platforms;
                 Genre = game.Genre;
@@ -77,6 +78,7 @@ namespace ReviewApp.ViewModels
             else
             {
                 GameTitle = review.Title;
+                GameStatus = review.GameStatus;
             }
 
             var sb = new StringBuilder();
