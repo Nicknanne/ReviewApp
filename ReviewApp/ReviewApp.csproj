@@ -64,7 +64,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 	</ItemGroup>
 
-	<ItemGroup Condition="$([MSBuild]""GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+	<ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
 	</ItemGroup>
 
