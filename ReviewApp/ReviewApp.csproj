@@ -24,7 +24,7 @@
 		<ApplicationTitle>ReviewApp</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.reviewapp</ApplicationId>
+		<ApplicationId>ru.nicknameu.reviewapp</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
