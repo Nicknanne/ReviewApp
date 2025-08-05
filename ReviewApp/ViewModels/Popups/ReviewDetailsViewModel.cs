@@ -138,7 +138,7 @@ namespace ReviewApp.ViewModels
             $"Immersive: {Immersive}\n" +
             $"Replaybility: {Replaybility}\n" +
             $"Overall rating: {OverallRating}\n\n" +
-            $"Telegram: https://t.me/+IKmuGfr8vK44ZjI6";
+            $"Telegram: https://t.me/nicknameu_u";
 
             await Clipboard.SetTextAsync(bufferText);
         }
