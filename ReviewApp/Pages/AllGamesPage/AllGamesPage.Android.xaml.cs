@@ -4,9 +4,9 @@ using ReviewApp.ViewModels;
 
 namespace ReviewApp
 {
-    public partial class AllGamesPage : ContentPage
+    public partial class AllGamesPageAndroid : ContentPage
     {
-        public AllGamesPage(AllGamesViewModel viewModel)
+        public AllGamesPageAndroid(AllGamesViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;

@@ -2,19 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:ReviewApp.ViewModels"
-             x:Class="ReviewApp.MainPage"
-             Title="MainPage"
+             x:Class="ReviewApp.AllGamesPageWindows"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False">
              
     <Grid RowDefinitions="Auto, *, Auto">
         <SearchBar Grid.Row="0"></SearchBar>
-        <CollectionView ItemsSource="{Binding Reviews}" Grid.Row="1">
+        <CollectionView ItemsSource="{Binding Games}" Grid.Row="1">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Span="2" HorizontalItemSpacing="10" VerticalItemSpacing="10" Orientation="Vertical"></GridItemsLayout>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="viewModels:ReviewItemViewModel">
+                <DataTemplate x:DataType="viewModels:GameItemViewModel">
                     <Border BackgroundColor="#FF383838"
                         WidthRequest="580"
                         HeightRequest="220"
@@ -34,7 +33,7 @@
 
                             <Label Text="{Binding GameTitle}"
                                 Padding="10,6"
-                                FontSize="26"
+                                FontSize="20"
                                 Grid.Row="0"
                                 Grid.Column="0"></Label>
                             <Button Text="View"
@@ -42,18 +41,17 @@
                                 HorizontalOptions="End"
                                 Grid.Row="0"
                                 Grid.Column="2"
-                                WidthRequest="120"
-                                Command="{Binding OpenReviewDetailsPopapCommand}"></Button>
+                                WidthRequest="120"></Button>
 
                             <ScrollView
                                 Grid.Row="1"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2">
-                                <Label Text="{Binding Comment}"
+                                <Label Text="{Binding Description}"
                                     Padding="10,6"
                                     FontSize="14"></Label>
                             </ScrollView>
-                            <Label Text="{Binding Rating}"
+                            <Label Text="{Binding Platforms}"
                                 Padding="10,6"
                                 FontSize="14"
                                 Grid.Row="1"
@@ -69,4 +67,5 @@
             <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding NextPageCommand}"></Button>
         </HorizontalStackLayout>
     </Grid>
+
 </ContentPage>

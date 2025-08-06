@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ReviewApp.Popups.ReviewDetailsPopupAndroid"
+             Color="Transparent"
+             CanBeDismissedByTappingOutsideOfPopup="True">
+
+    <Border BackgroundColor="#FF272727"
+            StrokeShape="RoundRectangle 10"
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+       <Grid WidthRequest="340" HeightRequest="600" RowSpacing="4" ColumnSpacing="4" Padding="10">
+              <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+                     <ColumnDefinition Width="*"></ColumnDefinition>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                     <RowDefinition Height="30"></RowDefinition>
+                     <RowDefinition Height="30"></RowDefinition>
+                     <RowDefinition Height="0.5*"></RowDefinition>
+                     <RowDefinition Height="0.5*"></RowDefinition>
+                     <RowDefinition Height="0.5*"></RowDefinition>
+                     <RowDefinition Height="0.5*"></RowDefinition>
+                     <RowDefinition Height="3*"></RowDefinition>
+                     <RowDefinition Height="36"></RowDefinition>
+              </Grid.RowDefinitions>
+              <Label Text="{Binding GameTitle}"
+                     FontSize="Large"
+                     FontAttributes="Bold"
+                     HorizontalTextAlignment="Center"
+                     VerticalTextAlignment="Center"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     Grid.Row="0"
+                     Grid.RowSpan="2"/>
+              <ScrollView Grid.Column="0"
+                     Grid.ColumnSpan="3"
+                     Grid.Row="6"
+                     VerticalScrollBarVisibility="Never"
+                     Padding="10,6">
+                     <Label Text="{Binding Comment}"
+                            FontSize="14"/>
+              </ScrollView>
+
+              <Border StrokeShape="RoundRectangle 4"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Center"
+                     Grid.Column="2"
+                     Grid.Row="0">
+                     <VerticalStackLayout>
+                            <Label Text="{Binding GameStatus}" Margin="6"/>
+                     </VerticalStackLayout>
+              </Border>
+
+              <Button Text="Копировать"
+                     FontSize="14"
+                     Padding="0"
+                     Command="{Binding CopyReviewCommand}"
+                     Grid.Column="2"
+                     Grid.Row="1"
+                     HeightRequest="30"/>
+
+              <Button Text="Закрыть"
+                     Padding="0"
+                     Command="{Binding ClosePopupCommand}"
+                     Grid.Column="1"
+                     Grid.Row="7"/>
+
+              <Label Text="{Binding GraphicsText}" FontSize="14" Grid.Column="0" Grid.Row="3" WidthRequest="100"/>
+              <Label Text="{Binding GameplayText}" FontSize="14" Grid.Column="1" Grid.Row="3" WidthRequest="100"/>
+              <Label Text="{Binding SoundText}" FontSize="14" Grid.Column="2" Grid.Row="3" WidthRequest="100"/>
+              <Label Text="{Binding PlotAndLoreText}" FontSize="14" Grid.Column="0" Grid.Row="4" WidthRequest="100"/>
+              <Label Text="{Binding ImpressionText}" FontSize="14" Grid.Column="1" Grid.Row="4" WidthRequest="100"/>
+              <Label Text="{Binding ImmersiveText}" FontSize="14" Grid.Column="2" Grid.Row="4" WidthRequest="100"/>
+              <Label Text="{Binding ReplaybilityText}" FontSize="14" Grid.Column="1" Grid.Row="5" WidthRequest="100"/>
+
+              <Label Text="{Binding OverallRatingText}" FontSize="22" Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" WidthRequest="180" HorizontalTextAlignment="Center" Padding="0,10,0,0"/>
+       </Grid>
+    </Border>
+</toolkit:Popup>

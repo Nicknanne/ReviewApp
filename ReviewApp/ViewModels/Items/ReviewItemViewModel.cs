@@ -41,7 +41,7 @@ namespace ReviewApp.ViewModels
             _review = review;
             _game = game;
 
-            Comment = review.Comment;
+            Comment = review.Comment!.Length > 130 ? review.Comment[..127] + "..." : review.Comment;
             Graphics = review.Graphics;
             Gameplay = review.Gameplay;
             Sound = review.Sound;
@@ -65,13 +65,6 @@ namespace ReviewApp.ViewModels
             }
 
             var sb = new StringBuilder();
-            sb.AppendLine($"Graphics: {Graphics}");
-            sb.AppendLine($"Gameplay: {Gameplay}");
-            sb.AppendLine($"Sound: {Sound}");
-            sb.AppendLine($"Plot and lore: {PlotAndLore}");
-            sb.AppendLine($"Impression: {Impression}");
-            sb.AppendLine($"Immersive: {Immersive}");
-            sb.AppendLine($"Replaybility: {Replaybility}");
             sb.AppendLine($"Overall rating: {OverallRating}");
             Rating = sb.ToString();
         }
@@ -79,7 +72,11 @@ namespace ReviewApp.ViewModels
         [RelayCommand]
         private async Task OpenReviewDetailsPopap()
         {
-            var reviewDetailsPopup = new ReviewDetailsPopup(new ReviewDetailsViewModel(_review, _game));
+#if ANDROID
+            var reviewDetailsPopup = new ReviewDetailsPopupAndroid(new ReviewDetailsViewModel(_review, _game));
+#else
+            var reviewDetailsPopup = new ReviewDetailsPopupWindows(new ReviewDetailsViewModel(_review, _game));
+#endif
             await Shell.Current.ShowPopupAsync(reviewDetailsPopup);
         }
     }
