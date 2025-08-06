@@ -15,6 +15,8 @@
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
             <controls:RatingSliderControl TitleText="Graphics:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding GraphicsRating}"></controls:RatingSliderControl>
             <controls:RatingSliderControl TitleText="Gameplay:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding GameplayRating}"></controls:RatingSliderControl>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
             <controls:RatingSliderControl TitleText="Sound:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding SoundRating}"></controls:RatingSliderControl>
             <controls:RatingSliderControl TitleText="Replaybility:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding ReplaybilityRating}"></controls:RatingSliderControl>
         </HorizontalStackLayout>

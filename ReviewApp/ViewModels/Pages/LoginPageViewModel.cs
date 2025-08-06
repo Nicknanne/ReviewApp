@@ -6,9 +6,13 @@ namespace ReviewApp.ViewModels
     public partial class LoginPageViewModel : ObservableObject
     {
         [RelayCommand]
-        private async Task Login()
+        private void Login()
         {
-            await Shell.Current.GoToAsync(nameof(MainPage));
+#if ANDROID
+            Application.Current!.MainPage = new AppShellAndroid();
+#else
+            Application.Current!.MainPage = new AppShellWindows();
+#endif
         }
     }
 }

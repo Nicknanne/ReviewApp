@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Shell
-    x:Class="ReviewApp.AppShell"
+    x:Class="ReviewApp.AppShellWindows"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ReviewApp"
+    xmlns:pages="clr-namespace:ReviewApp.Pages"
     Shell.FlyoutBehavior="Locked"
     FlyoutWidth="160"
     Title="ReviewApp">
 
-    <ShellContent
-        FlyoutItemIsVisible="False"
-        Shell.FlyoutBehavior="Disabled"
-        Title="Login"
-        ContentTemplate="{DataTemplate local:LoginPage}"
-        Route="LoginPage" />
-
     <FlyoutItem Title="One review" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Меню" ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"></ShellContent>
-        <ShellContent Title="Все игры" ContentTemplate="{DataTemplate local:AllGamesPage}" Route="AllGamesPage"></ShellContent>
+        <ShellContent Title="Меню" ContentTemplate="{DataTemplate pages:MainPageWindows}" Route="MainPage"></ShellContent>
+        <ShellContent Title="Все игры" ContentTemplate="{DataTemplate local:AllGamesPageWindows}" Route="AllGamesPage"></ShellContent>
     </FlyoutItem>
     
     <FlyoutItem Title="Two review" FlyoutDisplayOptions="AsMultipleItems">

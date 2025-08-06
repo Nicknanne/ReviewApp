@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using ReviewApp.Pages;
 using ReviewApp.Popups;
 using ReviewApp.Services;
 using ReviewApp.ViewModels;
@@ -26,14 +27,17 @@ public static class MauiProgram
 		builder.Services.AddTransient<LoginPageViewModel>();
 		builder.Services.AddTransient<LoginPage>();
 		builder.Services.AddTransient<MainPageViewModel>();
-		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<MainPageAndroid>();
+		builder.Services.AddTransient<MainPageWindows>();
 		builder.Services.AddTransient<AddReviewViewModel>();
 		builder.Services.AddTransient<AddReviewPage>();
 		builder.Services.AddTransient<AllGamesViewModel>();
-		builder.Services.AddTransient<AllGamesPage>();
+		builder.Services.AddTransient<AllGamesPageAndroid>();
+		builder.Services.AddTransient<AllGamesPageWindows>();
 
 		builder.Services.AddTransient<ReviewDetailsViewModel>();
-		builder.Services.AddTransient<ReviewDetailsPopup>();
+		builder.Services.AddTransient<ReviewDetailsPopupAndroid>();
+		builder.Services.AddTransient<ReviewDetailsPopupWindows>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

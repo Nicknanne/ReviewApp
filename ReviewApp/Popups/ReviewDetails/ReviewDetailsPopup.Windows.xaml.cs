@@ -3,9 +3,9 @@ using ReviewApp.ViewModels;
 
 namespace ReviewApp.Popups
 {
-    public partial class ReviewDetailsPopup : Popup
+    public partial class ReviewDetailsPopupWindows : Popup
     {
-        public ReviewDetailsPopup(ReviewDetailsViewModel viewModel)
+        public ReviewDetailsPopupWindows(ReviewDetailsViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
