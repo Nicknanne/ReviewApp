@@ -23,7 +23,7 @@
                         StrokeLineJoin="Round">
                         <Grid>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="40"></RowDefinition>
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
@@ -32,36 +32,55 @@
                                 <ColumnDefinition Width="160"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <Label Text="{Binding GameTitle}"
-                                Padding="10,6"
-                                FontSize="24"
+                            <BoxView BackgroundColor="#FF555555" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                            <Label 
+                                Text="{Binding GameTitle}"
+                                Padding="10,6,0,0"
+                                FontSize="22"
                                 Grid.Row="0"
-                                Grid.Column="0"></Label>
-                            <Button Text="View"
+                                Grid.Column="0">
+                            </Label>
+                            <Border 
+                                BackgroundColor="#FF383838"
                                 Margin="0,0,10,0"
-                                Padding="0"
-                                HorizontalOptions="End"
-                                Grid.Row="0"
-                                Grid.Column="2"
-                                WidthRequest="80"
+                                WidthRequest="160"
                                 HeightRequest="30"
-                                Command="{Binding OpenReviewDetailsPopapCommand}"></Button>
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="1"
+                                StrokeLineJoin="Round"
+                                Grid.Row="0"
+                                Grid.Column="2">
+                                <Label 
+                                    Text="{Binding Rating}"
+                                    Margin="0,3,0,0"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="18">
+                                </Label>
+                            </Border>
 
                             <ScrollView
+                                Margin="10,5,0,0"
                                 Grid.Row="1"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="2"
+                                Grid.ColumnSpan="3"
                                 VerticalScrollBarVisibility="Never">
-                                <Label Text="{Binding Comment}"
-                                    Padding="10,6"
-                                    FontSize="14"></Label>
+                                <Label 
+                                    Text="{Binding Comment}"
+                                    FontSize="14">
+                                </Label>
                             </ScrollView>
-                            <Label Text="{Binding Rating}"
-                                HorizontalTextAlignment="Center"
-                                VerticalTextAlignment="Center"
-                                FontSize="18"
+                            <Button 
+                                Text="View"
+                                Margin="0,0,10,-40"
+                                Padding="0"
+                                HorizontalOptions="End"
                                 Grid.Row="1"
-                                Grid.Column="2"></Label>
+                                Grid.Column="3"
+                                WidthRequest="80"
+                                HeightRequest="30"
+                                Command="{Binding OpenReviewDetailsPopapCommand}">
+                            </Button>
                         </Grid>
                     </Border>
                 </DataTemplate>
