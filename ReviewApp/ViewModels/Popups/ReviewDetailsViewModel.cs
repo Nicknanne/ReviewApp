@@ -25,6 +25,8 @@ namespace ReviewApp.ViewModels
         private string? _replaybilityText;
         [ObservableProperty]
         private string? _overallRatingText;
+        [ObservableProperty]
+        private Color _GameStatusColor;
 
         // review.cs
         [ObservableProperty]
@@ -73,7 +75,7 @@ namespace ReviewApp.ViewModels
         public Action ClosePopupAction;
         public ReviewDetailsViewModel(Review review, Game game)
         {
-            Comment = $"Comment:\n{review.Comment}";
+            Comment = review.Comment;
             Graphics = review.Graphics;
             Gameplay = review.Gameplay;
             Sound = review.Sound;
@@ -85,7 +87,7 @@ namespace ReviewApp.ViewModels
             if (game != null)
             {
                 GameTitle = game.Title;
-                GameStatus = review.GameStatus;
+                GameStatus = $"Status: {review.GameStatus}";
                 ReleaseDate = game.ReleaseDate;
                 Platforms = game.Platforms;
                 Genre = game.Genre;
@@ -95,8 +97,15 @@ namespace ReviewApp.ViewModels
             else
             {
                 GameTitle = review.Title;
-                GameStatus = review.GameStatus;
+                GameStatus = $"Status: {review.GameStatus}";
             }
+
+            if (review.GameStatus == "Completed")
+                GameStatusColor = new(0, 120, 0);
+            else if (review.GameStatus == "Abandoned")
+                GameStatusColor = new(120, 0, 0);
+            else
+                GameStatusColor = new(100, 0, 130);
 
             GraphicsText = $"Graphics: {Graphics}";
             GameplayText = $"Gameplay: {Gameplay}";
@@ -129,7 +138,7 @@ namespace ReviewApp.ViewModels
         private async Task CopyReview()
         {
             string bufferText = $"Оценка игры {GameTitle}\n\n" +
-            $"{Comment}\n\n" +
+            $"Comment:\n{Comment}\n\n" +
             $"Graphics: {Graphics}\n" +
             $"Gameplay: {Gameplay}\n" +
             $"Sound: {Sound}\n" +
