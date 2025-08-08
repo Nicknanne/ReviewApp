@@ -4,6 +4,8 @@ using ReviewApp.Pages;
 using ReviewApp.Popups;
 using ReviewApp.Services;
 using ReviewApp.ViewModels;
+using Microsoft.Extensions.Configuration;
+using Supabase;
 
 namespace ReviewApp;
 
@@ -20,6 +22,21 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		var config = new ConfigurationBuilder()
+			.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+			.Build();
+
+		var supabaseUrl = config["Supabase:Url"];
+		var supabaseKey = config["Supabase:Key"];
+
+		var options = new SupabaseOptions
+		{
+			AutoRefreshToken = true,
+			AutoConnectRealtime = true
+		};
+
+		builder.Services.AddSingleton(provider => new Supabase.Client(supabaseKey, supabaseKey, options));
 
 		builder.Services.AddSingleton<IReviewService, ReviewService>();
 		builder.Services.AddSingleton<IGamesService, GamesService>();
