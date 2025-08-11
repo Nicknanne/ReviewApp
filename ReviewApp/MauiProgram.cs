@@ -33,11 +33,13 @@ public static class MauiProgram
 		var options = new SupabaseOptions
 		{
 			AutoRefreshToken = true,
-			AutoConnectRealtime = true
+			AutoConnectRealtime = true,
+			SessionHandler = new SecureSessionPersistence()
 		};
 
-		builder.Services.AddSingleton(provider => new Supabase.Client(supabaseKey, supabaseKey, options));
+		builder.Services.AddSingleton(provider => new Supabase.Client(supabaseUrl, supabaseKey, options));
 
+		builder.Services.AddSingleton<ISupabaseService, SupabaseService>();
 		builder.Services.AddSingleton<IReviewService, ReviewService>();
 		builder.Services.AddSingleton<IGamesService, GamesService>();
 

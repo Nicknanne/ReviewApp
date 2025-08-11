@@ -8,8 +8,9 @@
 
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
         <Label Text="Auth" FontSize="24" WidthRequest="200" HorizontalTextAlignment="Center"></Label>
-        <Entry Text="" Placeholder="Username" WidthRequest="300"></Entry>
-        <Entry Text="" Placeholder="Password" WidthRequest="300" IsPassword="True"></Entry>
+        <Entry Text="{Binding Email}" Placeholder="Username" WidthRequest="300"></Entry>
+        <Entry Text="{Binding Password}" Placeholder="Password" WidthRequest="300" IsPassword="False"></Entry>
+        <Button Text="Register" FontSize="18" Command="{Binding RegisterCommand}" WidthRequest="150"></Button>
         <Button Text="Login" FontSize="18" Command="{Binding LoginCommand}" WidthRequest="150"></Button>
     </VerticalStackLayout>
 </ContentPage>

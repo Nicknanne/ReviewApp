@@ -1,14 +1,21 @@
-﻿using ReviewApp.Popups;
+﻿using System.Diagnostics;
+using ReviewApp.Popups;
 
 namespace ReviewApp
 {
     public partial class App : Application
     {
-        public App()
+        private readonly IServiceProvider _serviceProvider;
+        private readonly Supabase.Client _supabaseClient;
+        public App(IServiceProvider serviceProvider, Supabase.Client supabaseClient)
         {
+            _serviceProvider = serviceProvider;
+            _supabaseClient = supabaseClient;
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage(new()));
+            MainPage = new ContentPage();
+
+            InitializeAsync();
 
 #if ANDROID
             Routing.RegisterRoute("MainPage", typeof(Pages.MainPageAndroid));
@@ -21,6 +28,27 @@ namespace ReviewApp
 #endif
 
             Routing.RegisterRoute(nameof(AddReviewPage), typeof(AddReviewPage));
+        }
+
+        private async Task InitializeAsync()
+        {
+            await _supabaseClient.InitializeAsync();
+
+            _supabaseClient.Auth.LoadSession();
+
+            if (_supabaseClient.Auth.CurrentSession != null)
+            {
+#if ANDROID
+                MainPage = new AppShellAndroid();
+#else
+                MainPage = new AppShellWindows();
+#endif  
+            }
+            else
+            {
+                var loginPage = _serviceProvider.GetRequiredService<LoginPage>();
+                MainPage = new NavigationPage(loginPage);
+            }
         }
     }
 }
