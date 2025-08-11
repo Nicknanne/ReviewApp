@@ -88,7 +88,7 @@
                                    Grid.Row="5">
                                    <Grid RowDefinitions="*" ColumnDefinitions="*, *">
                                           <Label Text="{Binding ImmersiveText}" FontSize="14" Grid.Column="0" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                          <Label Text="{Binding ReplaybilityText}" FontSize="14" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                          <Label Text="{Binding ReplayabilityText}" FontSize="14" Grid.Column="1" Grid.Row="0" HorizontalOptions="Center" VerticalOptions="Center"/>
                                    </Grid>
                             </Border>
 

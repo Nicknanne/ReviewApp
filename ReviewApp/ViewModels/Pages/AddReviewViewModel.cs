@@ -67,7 +67,7 @@ namespace ReviewApp.ViewModels
         [ObservableProperty]
         private double _immersiveRating = 5;
         [ObservableProperty]
-        private double _replaybilityRating = 5;
+        private double _replayabilityRating = 5;
 
         [ObservableProperty]
         private string _selectedGameStatus = "Completed";
@@ -94,7 +94,7 @@ namespace ReviewApp.ViewModels
                 PlotAndLore = (int)PlotAndLoreRating,
                 Impression = (int)ImpressionRating,
                 Immersive = (int)ImmersiveRating,
-                Replaybility = (int)ReplaybilityRating
+                Replayability = (int)ReplayabilityRating
             };
 
             try

@@ -48,7 +48,7 @@ namespace ReviewApp.ViewModels
             PlotAndLore = review.PlotAndLore;
             Impression = review.Impression;
             Immersive = review.Immersive;
-            Replaybility = review.Replaybility;
+            Replaybility = review.Replayability;
 
             if (game != null)
             {

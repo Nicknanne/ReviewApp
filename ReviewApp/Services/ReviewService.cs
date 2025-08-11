@@ -88,7 +88,7 @@ namespace ReviewApp.Services
                 existingReview.PlotAndLore = updatedReview.PlotAndLore;
                 existingReview.Impression = updatedReview.Impression;
                 existingReview.Immersive = updatedReview.Immersive;
-                existingReview.Replaybility = updatedReview.Replaybility;
+                existingReview.Replayability = updatedReview.Replayability;
 
                 await SaveReviewsAsync();
                 return existingReview;

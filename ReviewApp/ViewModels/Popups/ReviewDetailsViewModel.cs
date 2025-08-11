@@ -22,7 +22,7 @@ namespace ReviewApp.ViewModels
         [ObservableProperty]
         private string? _immersiveText;
         [ObservableProperty]
-        private string? _replaybilityText;
+        private string? _replayabilityText;
         [ObservableProperty]
         private string? _overallRatingText;
         [ObservableProperty]
@@ -52,8 +52,8 @@ namespace ReviewApp.ViewModels
         [ObservableProperty]
         private double _immersive;
         [ObservableProperty]
-        private double _replaybility;
-        public double OverallRating => Math.Round((_graphics + _gameplay + _sound + _plotAndLore + _impression + _immersive + _replaybility) / 7, 2);
+        private double _replayability;
+        public double OverallRating => Math.Round((_graphics + _gameplay + _sound + _plotAndLore + _impression + _immersive + _replayability) / 7, 2);
 
         // game.cs
         [ObservableProperty]
@@ -82,7 +82,7 @@ namespace ReviewApp.ViewModels
             PlotAndLore = review.PlotAndLore;
             Impression = review.Impression;
             Immersive = review.Immersive;
-            Replaybility = review.Replaybility;
+            Replayability = review.Replayability;
 
             if (game != null)
             {
@@ -113,7 +113,7 @@ namespace ReviewApp.ViewModels
             PlotAndLoreText = $"Plot and lore: {PlotAndLore}";
             ImpressionText = $"Impression: {Impression}";
             ImmersiveText = $"Immersive: {Immersive}";
-            ReplaybilityText = $"Replaybility: {Replaybility}";
+            ReplayabilityText = $"Replayability: {Replayability}";
             OverallRatingText = $"Overall rating: {OverallRating}";
 
             var sb = new StringBuilder();
@@ -123,7 +123,7 @@ namespace ReviewApp.ViewModels
             sb.AppendLine($"Plot and lore: {PlotAndLore}");
             sb.AppendLine($"Impression: {Impression}");
             sb.AppendLine($"Immersive: {Immersive}");
-            sb.AppendLine($"Replaybility: {Replaybility}");
+            sb.AppendLine($"Replayability: {Replayability}");
             sb.AppendLine($"Overall rating: {OverallRating}");
             Rating = sb.ToString();
         }
@@ -145,7 +145,7 @@ namespace ReviewApp.ViewModels
             $"Plot and lore: {PlotAndLore}\n" +
             $"Impression: {Impression}\n" +
             $"Immersive: {Immersive}\n" +
-            $"Replaybility: {Replaybility}\n" +
+            $"Replayability: {Replayability}\n" +
             $"Overall rating: {OverallRating}\n\n" +
             $"Telegram: https://t.me/nicknameu_u";
 

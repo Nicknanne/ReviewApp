@@ -18,7 +18,7 @@
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
             <controls:RatingSliderControl TitleText="Sound:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding SoundRating}"></controls:RatingSliderControl>
-            <controls:RatingSliderControl TitleText="Replaybility:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding ReplaybilityRating}"></controls:RatingSliderControl>
+            <controls:RatingSliderControl TitleText="Replayability:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding ReplayabilityRating}"></controls:RatingSliderControl>
         </HorizontalStackLayout>
         <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
             <controls:RatingSliderControl TitleText="Plot and lore:" MinimumValue="1" MaximumValue="10" CurrentValue="{Binding PlotAndLoreRating}"></controls:RatingSliderControl>
