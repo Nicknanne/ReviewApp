@@ -1,3 +1,5 @@
+using ReviewApp.Models;
+
 namespace ReviewApp.Services
 {
     public class SupabaseService : ISupabaseService
@@ -39,9 +41,49 @@ namespace ReviewApp.Services
             }
         }
 
-        public async Task<bool> IsUserAuthenticatedAsync()
+        public async Task<(bool Success, string? ErrorMessage)> SignOutAsync()
         {
-            return _client.Auth.CurrentSession != null;
+            try
+            {
+                await _client.Auth.SignOut();
+                return (true, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+
+        public Task<bool> IsUserAuthenticatedAsync()
+        {
+            return Task.FromResult(_client.Auth.CurrentSession != null);
+        }
+
+        public Task<Supabase.Gotrue.User?> GetCurrentUserAsync()
+        {
+            return Task.FromResult(_client.Auth.CurrentUser);
+        }
+
+        public async Task<(bool Success, string? ErrorMessage, Review Review)> SubmitReviewAsync(Review review)
+        {
+            try
+            {
+                var respone = await _client.From<Review>().Insert(review);
+                if (respone.Model != null)
+                    return (true, null, respone.Model);
+                return (false, "Sumbit failed.", review);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message, review);
+            }
+        }
+
+        public async Task<List<Review>> GetReviewsAsync()
+        {
+            var response = await _client.From<Review>().Get();
+            var reviews = response.Models;
+            return reviews;
         }
     }
 }

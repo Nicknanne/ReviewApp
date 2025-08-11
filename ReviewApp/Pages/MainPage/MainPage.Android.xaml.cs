@@ -9,4 +9,14 @@ public partial class MainPageAndroid : ContentPage
 		InitializeComponent();
 		BindingContext = viewModel;
 	}
+
+	protected async override void OnAppearing()
+	{
+		base.OnAppearing();
+
+		if (BindingContext is MainPageViewModel viewModel)
+		{
+			await viewModel.OnAppearing();
+		}
+    }
 }

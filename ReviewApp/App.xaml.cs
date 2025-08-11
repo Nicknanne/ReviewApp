@@ -35,6 +35,7 @@ namespace ReviewApp
             await _supabaseClient.InitializeAsync();
 
             _supabaseClient.Auth.LoadSession();
+            await _supabaseClient.Auth.RetrieveSessionAsync();
 
             if (_supabaseClient.Auth.CurrentSession != null)
             {

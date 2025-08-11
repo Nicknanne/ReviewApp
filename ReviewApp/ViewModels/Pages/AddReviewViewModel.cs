@@ -11,6 +11,7 @@ namespace ReviewApp.ViewModels
     {
         private readonly IGamesService _gamesService;
         private readonly IReviewService _reviewService;
+        private readonly ISupabaseService _supabaseService;
 
         [ObservableProperty]
         private ObservableCollection<Game> _filteredGames = new();
@@ -81,11 +82,17 @@ namespace ReviewApp.ViewModels
                 return;
             }
 
+            Guid? userId = null;
+
+            var user = await _supabaseService.GetCurrentUserAsync();
+            if (user != null)
+                userId = Guid.Parse(user.Id!);
+
             var newReview = new Review
             {
-                UserId = -1,
-                GameId = -1,
-                Title = GameTitle,
+                UserId = userId,
+                GameId = null,
+                Title = GameTitle!,
                 Comment = CommentText,
                 GameStatus = SelectedGameStatus,
                 Graphics = (int)GraphicsRating,
@@ -99,7 +106,16 @@ namespace ReviewApp.ViewModels
 
             try
             {
-                var savedReview = await _reviewService.AddReviewAsync(newReview);
+                Review? savedReview = null;
+
+                // if user offline save local else save in db
+                if (user != null)
+                {
+                    var response = await _supabaseService.SubmitReviewAsync(newReview);
+                    savedReview = response.Success ? response.Review : null;
+                }
+                else
+                    savedReview = await _reviewService.AddReviewAsync(newReview);
 
                 if (savedReview != null)
                 {
@@ -118,12 +134,11 @@ namespace ReviewApp.ViewModels
             }
         }
 
-        public AddReviewViewModel(IGamesService gameService, IReviewService reviewService)
+        public AddReviewViewModel(IGamesService gameService, IReviewService reviewService, ISupabaseService supabaseService)
         {
             _gamesService = gameService;
             _reviewService = reviewService;
-
-            _ = LoadGames();
+            _supabaseService = supabaseService;
         }
 
         private async Task LoadGames()

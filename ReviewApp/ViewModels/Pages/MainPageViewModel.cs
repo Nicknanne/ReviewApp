@@ -22,20 +22,7 @@ namespace ReviewApp.ViewModels
         public MainPageViewModel(IReviewService reviewService, IGamesService gamesService)
         {
             _reviewService = reviewService;
-            _gameService = gamesService;    
-
-            _ = Init();
-        }
-
-        private async Task Init()
-        {
-            _allReviews = await _reviewService.GetReviewsAsync();
-            _allGames = await _gameService.GetGamesAsync();
-
-            _page = 0;
-            _maxPage = (int)MathF.Ceiling(_allReviews.Count / 10f);
-
-            await UpdateGames(_page);
+            _gameService = gamesService;
         }
 
         private async Task UpdateGames(int page)
@@ -69,6 +56,17 @@ namespace ReviewApp.ViewModels
             if (_page == 0)
                 return;
             await UpdateGames(--_page);
+        }
+
+        public async Task OnAppearing()
+        {
+            _allReviews = await _reviewService.GetReviewsAsync();
+            _allGames = await _gameService.GetGamesAsync();
+
+            _page = 0;
+            _maxPage = (int)MathF.Ceiling(_allReviews.Count / 10f);
+
+            await UpdateGames(_page);
         }
     }
 }

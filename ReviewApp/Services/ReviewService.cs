@@ -7,15 +7,17 @@ namespace ReviewApp.Services
 {
     public class ReviewService : IReviewService
     {
+        private readonly ISupabaseService _supabaseService;
         private readonly string _filePath;
         private ObservableCollection<Review> _reviews;
+        private bool _isLoaded;
 
-        public ReviewService()
+        public ReviewService(ISupabaseService supabaseService)
         {
+            _supabaseService = supabaseService;
             _filePath = Path.Combine(FileSystem.AppDataDirectory, "reviews.json");
             _reviews = new ObservableCollection<Review>();
-
-            _ = LoadReviewsAsync();
+            _isLoaded = false;
         }
 
         private async Task LoadReviewsAsync()
@@ -41,8 +43,32 @@ namespace ReviewApp.Services
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Error loading reviews: {ex.Message}");
+                Debug.WriteLine($"Error loading reviews: {ex.Message}\n{_filePath}");
                 _reviews.Clear();
+            }
+
+            if (await _supabaseService.IsUserAuthenticatedAsync())
+            {
+                var user = await _supabaseService.GetCurrentUserAsync();
+                var tempReviews = new ObservableCollection<Review>();
+                try
+                {
+                    var reviews = await _supabaseService.GetReviewsAsync();
+                    foreach (var review in reviews.Where(x => x.UserId == Guid.Parse(user!.Id!)))
+                    {
+                        tempReviews.Add(review);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error loading reviews: {ex.Message}");
+                    tempReviews.Clear();
+                }
+
+                foreach (var review in tempReviews)
+                {
+                    _reviews.Add(review);
+                }
             }
         }
 
@@ -59,13 +85,24 @@ namespace ReviewApp.Services
             }
         }
 
+        private async Task EnsureReviewsLoadedAsync()
+        {
+            if (_isLoaded)
+                return;
+
+            await LoadReviewsAsync();
+            _isLoaded = true;
+        }
+
         public async Task<ObservableCollection<Review>> GetReviewsForGameAsync(int gameId)
         {
+            await EnsureReviewsLoadedAsync();
             return new ObservableCollection<Review>(_reviews.Where(r => r.GameId == gameId));
         }
 
         public async Task<Review> AddReviewAsync(Review newReview)
         {
+            await EnsureReviewsLoadedAsync();
             newReview.Id = _reviews.Any() ? _reviews.Max(r => r.Id) + 1 : 1;
             _reviews.Add(newReview);
             await SaveReviewsAsync();
@@ -74,6 +111,7 @@ namespace ReviewApp.Services
 
         public async Task<Review> UpdateReviewAsync(Review updatedReview)
         {
+            await EnsureReviewsLoadedAsync();
             var existingReview = _reviews.FirstOrDefault(r => r.Id == updatedReview.Id);
             if (existingReview != null)
             {
@@ -98,6 +136,7 @@ namespace ReviewApp.Services
 
         public async Task DeleteReviewAsync(int reviewId)
         {
+            await EnsureReviewsLoadedAsync();
             var reviewToRemove = _reviews.FirstOrDefault(r => r.Id == reviewId);
             if (reviewToRemove != null)
             {
@@ -108,9 +147,14 @@ namespace ReviewApp.Services
 
         public async Task<Review?> GetReviewByIdAsync(int reviewId)
         {
+            await EnsureReviewsLoadedAsync();
             return _reviews.FirstOrDefault(r => r.Id == reviewId);
         }
 
-        public async Task<ObservableCollection<Review>> GetReviewsAsync() => _reviews;
+        public async Task<ObservableCollection<Review>> GetReviewsAsync()
+        {
+            await EnsureReviewsLoadedAsync();
+            return _reviews;
+        }
     }
 }
