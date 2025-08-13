@@ -54,7 +54,7 @@ namespace ReviewApp.Services
                 try
                 {
                     var reviews = await _supabaseService.GetReviewsAsync();
-                    foreach (var review in reviews.Where(x => x.UserId == Guid.Parse(user!.Id!)))
+                    foreach (var review in reviews)
                     {
                         tempReviews.Add(review);
                     }

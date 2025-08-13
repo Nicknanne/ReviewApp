@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:ReviewApp.ViewModels"
+             x:Class="ReviewApp.AllPublicReviewsPageAndroid"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="True">
+             
+    <Grid RowDefinitions="Auto, *, Auto">
+        <SearchBar Grid.Row="0"></SearchBar>
+        <CollectionView ItemsSource="{Binding Reviews}" Grid.Row="1">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout HorizontalItemSpacing="10" VerticalItemSpacing="10" Orientation="Vertical"></GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:ReviewItemViewModel">
+                    <Border BackgroundColor="#FF383838"
+                        WidthRequest="400"
+                        HeightRequest="130"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="1"
+                        StrokeLineJoin="Round">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <BoxView BackgroundColor="#FF555555" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"/>
+
+                            <Label 
+                                Text="{Binding GameTitle}"
+                                Padding="10,6,0,0"
+                                FontSize="22"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2">
+                            </Label>
+                            <Border 
+                                BackgroundColor="#FF383838"
+                                Margin="0,0,10,0"
+                                WidthRequest="160"
+                                HeightRequest="30"
+                                StrokeShape="RoundRectangle 10"
+                                StrokeThickness="1"
+                                StrokeLineJoin="Round"
+                                Grid.Row="0"
+                                Grid.Column="2">
+                                <Label 
+                                    Text="{Binding Rating}"
+                                    Margin="0,3,0,0"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="18">
+                                </Label>
+                            </Border>
+
+                            <ScrollView
+                                Margin="10,5,0,0"
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                VerticalScrollBarVisibility="Never">
+                                <Label 
+                                    Text="{Binding Comment}"
+                                    FontSize="14">
+                                </Label>
+                            </ScrollView>
+                            <Button 
+                                Text="View"
+                                Margin="0,0,10,-40"
+                                Padding="0"
+                                HorizontalOptions="End"
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                WidthRequest="80"
+                                HeightRequest="30"
+                                Command="{Binding OpenReviewDetailsPopapCommand}">
+                            </Button>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <HorizontalStackLayout HeightRequest="70" Spacing="20" HorizontalOptions="Center" Grid.Row="2">
+            <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding PreviousPageCommand}"></Button>
+            <Label Text="{Binding PageLabel}" VerticalOptions="Center" FontSize="24"></Label>
+            <Button WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Command="{Binding NextPageCommand}"></Button>
+        </HorizontalStackLayout>
+    </Grid>
+
+</ContentPage>

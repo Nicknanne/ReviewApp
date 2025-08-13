@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorMyBlack">#000807</color>
+    <color name="colorMyResedaGreen">#5C7457</color>
+    <color name="colorMyYellowGreen">#95C623</color>
+    <color name="colorMyPersimmon">#E55812</color>
+    <color name="colorMyGhostWhite">#FBF9FF</color>
+
     <color name="colorPrimary">#512BD4</color>
     <color name="colorPrimaryDark">#2B0B98</color>
     <color name="colorAccent">#2B0B98</color>

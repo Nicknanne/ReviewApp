@@ -15,23 +15,23 @@ namespace ReviewApp.ViewModels
         private int _maxPage;
 
         private ObservableCollection<Review> _allReviews;
-        private ObservableCollection<Game> _allGames;
 
         private readonly IReviewService _reviewService;
-        private readonly IGamesService _gameService;
-        public MainPageViewModel(IReviewService reviewService, IGamesService gamesService)
+        private readonly ISupabaseService _supabaseService;
+        public MainPageViewModel(IReviewService reviewService, ISupabaseService supabaseService)
         {
             _reviewService = reviewService;
-            _gameService = gamesService;
+            _supabaseService = supabaseService;
         }
 
         private async Task UpdateGames(int page)
         {
             Reviews.Clear();
+            var user = await _supabaseService.GetCurrentUserAsync();
 
             await Task.Run(() =>
             {
-                foreach (var review in _allReviews)
+                foreach (var review in _allReviews.Where(x => x.UserId == Guid.Parse(user!.Id!)))
                 {
                     Reviews.Add(new(review, null));
                 }
@@ -61,7 +61,6 @@ namespace ReviewApp.ViewModels
         public async Task OnAppearing()
         {
             _allReviews = await _reviewService.GetReviewsAsync();
-            _allGames = await _gameService.GetGamesAsync();
 
             _page = 0;
             _maxPage = (int)MathF.Ceiling(_allReviews.Count / 10f);

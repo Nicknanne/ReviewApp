@@ -6,6 +6,7 @@ using ReviewApp.Services;
 using ReviewApp.ViewModels;
 using Microsoft.Extensions.Configuration;
 using Supabase;
+using System.Reflection;
 
 namespace ReviewApp;
 
@@ -23,12 +24,12 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		var config = new ConfigurationBuilder()
-			.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-			.Build();
-
-		var supabaseUrl = config["Supabase:Url"];
-		var supabaseKey = config["Supabase:Key"];
+		var a = Assembly.GetExecutingAssembly();
+		using var stream = a.GetManifestResourceStream("ReviewApp.appsettings.json");
+		if (stream != null)
+		{
+			builder.Configuration.AddJsonStream(stream);
+		}
 
 		var options = new SupabaseOptions
 		{
@@ -37,7 +38,15 @@ public static class MauiProgram
 			SessionHandler = new SecureSessionPersistence()
 		};
 
-		builder.Services.AddSingleton(provider => new Supabase.Client(supabaseUrl, supabaseKey, options));
+		builder.Services.AddSingleton(provider =>
+		{
+			var config = provider.GetRequiredService<IConfiguration>();
+
+			var supabaseUrl = config["Supabase:Url"];
+			var supabaseKey = config["Supabase:Key"];
+
+			return new Supabase.Client(supabaseUrl, supabaseKey, options);
+		});
 
 		builder.Services.AddSingleton<ISupabaseService, SupabaseService>();
 		builder.Services.AddSingleton<IReviewService, ReviewService>();
@@ -53,6 +62,9 @@ public static class MauiProgram
 		builder.Services.AddTransient<AllGamesViewModel>();
 		builder.Services.AddTransient<AllGamesPageAndroid>();
 		builder.Services.AddTransient<AllGamesPageWindows>();
+		builder.Services.AddTransient<AllPublicReviewsViewModel>();
+		builder.Services.AddTransient<AllPublicReviewsPageAndroid>();
+		builder.Services.AddTransient<AllPublicReviewsPageWindows>();
 
 		builder.Services.AddTransient<ReviewDetailsViewModel>();
 		builder.Services.AddTransient<ReviewDetailsPopupAndroid>();

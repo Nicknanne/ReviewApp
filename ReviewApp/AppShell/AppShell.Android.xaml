@@ -9,7 +9,7 @@
     Title="ReviewApp">
    <TabBar>
         <ShellContent Title="Меню" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate pages:MainPageAndroid}" />
-        <ShellContent Title="Все игры" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate local:AllGamesPageAndroid}" />
-        <ShellContent Title="Создать ревью" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate local:AddReviewPage}" />
+        <ShellContent Title="Все рецензии" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate local:AllPublicReviewsPageAndroid}" />
+        <ShellContent Title="Создать рецензию" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate local:AddReviewPage}" />
     </TabBar>
 </Shell>

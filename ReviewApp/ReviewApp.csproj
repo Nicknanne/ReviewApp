@@ -86,9 +86,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<Content Include="..\appsettings.json" Link="appsettings.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-		</Content>
+		<EmbeddedResource Include="..\appsettings.json"/>
 	</ItemGroup>
 </Project>

@@ -4,14 +4,50 @@
              x:Class="ReviewApp.LoginPage"
              Shell.NavBarIsVisible="False"
              Shell.TabBarIsVisible="False"
-             Title="LoginPage">
+             Title="LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{StaticResource MyBlack}">
 
     <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="20">
-        <Label Text="Auth" FontSize="24" WidthRequest="200" HorizontalTextAlignment="Center"></Label>
-        <Entry Text="{Binding Email}" Placeholder="Username" WidthRequest="300"></Entry>
-        <Entry Text="{Binding Password}" Placeholder="Password" WidthRequest="300" IsPassword="False"></Entry>
-        <Button Text="Register" FontSize="18" Command="{Binding RegisterCommand}" WidthRequest="150"></Button>
-        <Button Text="Login" FontSize="18" Command="{Binding LoginCommand}" WidthRequest="150"></Button>
+        <Label 
+            Text="Auth"
+            FontSize="32"
+            WidthRequest="200"
+            HorizontalTextAlignment="Center">
+        </Label>
+        <Entry 
+            Text="{Binding Email}"
+            Placeholder="Username"
+            WidthRequest="300">
+        </Entry>
+        <Entry 
+            Text="{Binding Password}"
+            Placeholder="Password"
+            WidthRequest="300"
+            IsPassword="True">
+        </Entry>
+        <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+            <Button 
+                Text="Register"
+                FontSize="18"
+                TextColor="{StaticResource MyGhostWhite}"
+                Command="{Binding RegisterCommand}"
+                BackgroundColor="{StaticResource MyResedaGreen}"
+                WidthRequest="100"
+                Padding="0"
+                CornerRadius="4">
+            </Button>
+            <Button 
+                Text="Login"
+                FontSize="18"
+                TextColor="{StaticResource MyGhostWhite}"
+                Command="{Binding LoginCommand}"
+                BackgroundColor="{StaticResource MyResedaGreen}"
+                WidthRequest="100"
+                Padding="0"
+                CornerRadius="4">
+            </Button>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
     

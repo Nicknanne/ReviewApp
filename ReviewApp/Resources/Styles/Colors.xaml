@@ -6,6 +6,12 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
+    <Color x:Key="MyBlack">#000807</Color>
+    <Color x:Key="MyResedaGreen">#5C7457</Color>
+    <Color x:Key="MyYellowGreen">#95C623</Color>
+    <Color x:Key="MyPersimmon">#E55812</Color>
+    <Color x:Key="MyGhostWhite">#FBF9FF</Color>
+
     <Color x:Key="Primary">#512BD4</Color>
     <Color x:Key="PrimaryDark">#ac99ea</Color>
     <Color x:Key="PrimaryDarkText">#242424</Color>

@@ -5,16 +5,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ReviewApp"
     xmlns:pages="clr-namespace:ReviewApp.Pages"
-    Shell.FlyoutBehavior="Locked"
-    FlyoutWidth="160"
-    Title="ReviewApp">
+    Title="ReviewApp"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutWidth="110">
 
-    <FlyoutItem Title="One review" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Меню" ContentTemplate="{DataTemplate pages:MainPageWindows}" Route="MainPage"></ShellContent>
-        <ShellContent Title="Все игры" ContentTemplate="{DataTemplate local:AllGamesPageWindows}" Route="AllGamesPage"></ShellContent>
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="80" RowDefinitions="60, 40" Padding="6">
+                <Image Grid.Column="0" Grid.Row="0" Source="{Binding Icon}"/>
+                <Label Grid.Column="0" Grid.Row="1" Text="{Binding Title}" FontSize="12" TextColor="White" VerticalOptions="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <FlyoutItem Title="One review" FlyoutDisplayOptions="AsMultipleItems" Shell.TabBarIsVisible="False">
+        <ShellContent Icon="dotnet_bot.png" Title="Меню" ContentTemplate="{DataTemplate pages:MainPageWindows}" Route="MainPage" Shell.TabBarIsVisible="False"></ShellContent>
+        <ShellContent Icon="dotnet_bot.png" Title="Все рецензии" ContentTemplate="{DataTemplate local:AllPublicReviewsPageWindows}" Route="AllGamesPage" Shell.TabBarIsVisible="False"></ShellContent>
     </FlyoutItem>
     
     <FlyoutItem Title="Two review" FlyoutDisplayOptions="AsMultipleItems">
-        <ShellContent Title="Создать ревью" ContentTemplate="{DataTemplate local:AddReviewPage}" Route="AddReviewPage"></ShellContent>
+        <ShellContent Icon="dotnet_bot.png" Title="Создать рецензию" ContentTemplate="{DataTemplate local:AddReviewPage}" Route="AddReviewPage" Shell.TabBarIsVisible="False"></ShellContent>
     </FlyoutItem>
 </Shell>
